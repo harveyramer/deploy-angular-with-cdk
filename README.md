@@ -111,3 +111,9 @@ Enter `y` to continue the deployment.
 #### Be Patient
 
 Your first deployment requires quite a bit of infrastructure to be provisioned and configured. It may take more than a half hour in some cases.
+
+## Next Steps
+
+Build a CI/CD pipeline that deploys this project on merging to master.
+
+Any requests? [Contact me](https://www.harveyramer.com/contact).
