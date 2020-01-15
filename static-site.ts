@@ -5,6 +5,7 @@ import s3 = require("@aws-cdk/aws-s3");
 import s3deploy = require("@aws-cdk/aws-s3-deployment");
 import acm = require("@aws-cdk/aws-certificatemanager");
 import cdk = require("@aws-cdk/core");
+import targets = require("@aws-cdk/aws-route53-targets/lib");
 import { Construct } from "@aws-cdk/core";
 
 export interface StaticSiteProps {
@@ -38,11 +39,9 @@ export class StaticSite extends Construct {
       // The default removal policy is RETAIN, which means that cdk destroy will not attempt to delete
       // the new bucket, and it will remain in your account until manually deleted. By setting the policy to
       // DESTROY, cdk destroy will attempt to delete the bucket, but will error if the bucket is not empty.
-      // removalPolicy: cdk.RemovalPolicy.DESTROY, // NOT recommended for production code
+      removalPolicy: cdk.RemovalPolicy.DESTROY, // NOT recommended for production code
     });
-
     new cdk.CfnOutput(this, "Bucket", { value: siteBucket.bucketName });
-    // new cdk.CfnOutput(this, "BucketRedirect", { value: redirectBucket.bucketName });
 
     // TLS certificate
     const certificateArn = new acm.DnsValidatedCertificate(this, "SiteCertificate", {
@@ -70,6 +69,13 @@ export class StaticSite extends Construct {
       ],
     });
     new cdk.CfnOutput(this, "DistributionId", { value: distribution.distributionId });
+
+    // Route53 alias record for the CloudFront distribution
+    new route53.ARecord(this, "SiteAliasRecord", {
+      recordName: siteDomain,
+      target: route53.AddressRecordTarget.fromAlias(new targets.CloudFrontTarget(distribution)),
+      zone,
+    });
 
     // Deploy site contents to S3 bucket
     new s3deploy.BucketDeployment(this, "DeployWithInvalidation", {
