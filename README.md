@@ -91,13 +91,13 @@ CDK_DEFAULT_ACCOUNT=12345678901 CDK_DEFAULT_REGION=us-east-1 cdk bootstrap -c do
 ### To publish changes
 
 ```
-$ CDK_DEFAULT_ACCOUNT=your_account_number CDK_DEFAULT_REGION=your_region cdk deploy -c domain=mystaticsite.com -c subdomain=www
+$ npm run build && CDK_DEFAULT_ACCOUNT=your_account_number CDK_DEFAULT_REGION=your_region cdk deploy -c domain=mystaticsite.com -c subdomain=www
 ```
 
 Given the hosted zone I created for becomingwhatweare.com, my deploy command will be:
 
 ```
-$ CDK_DEFAULT_ACCOUNT=12345678901 CDK_DEFAULT_REGION=us-east-1 cdk deploy -c domain=becomingwhatweare.com -c subdomain=www
+$ npm run build && CDK_DEFAULT_ACCOUNT=12345678901 CDK_DEFAULT_REGION=us-east-1 cdk deploy -c domain=becomingwhatweare.com -c subdomain=angular-example
 ```
 
 As the deployment runs, you will be asked:
