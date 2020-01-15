@@ -48,7 +48,7 @@ $ npm run build
 
 ### Angular Project
 
-Navigate to the `site-contents` directory and run `npm i`
+Navigate to the `angular` directory and run `npm i`
 
 ## DNS
 
@@ -72,7 +72,7 @@ More details on this process are available in the article, [Making Route 53 the 
 
 What we have here is an empty Angular project, but it's an app, and it's deployable! In the root of your project, do the following, but substitute your own domain.
 
-### First run
+### First Run
 
 Find your AWS account number by navigating to the [Support page in the console](https://console.aws.amazon.com/support/home#/) and looking at the top of the left column.
 
@@ -88,7 +88,7 @@ For example, the actual command might be:
 CDK_DEFAULT_ACCOUNT=12345678901 CDK_DEFAULT_REGION=us-east-1 cdk bootstrap -c domain=example.com -c subdomain=www
 ```
 
-### To publish changes
+### To Publish Changes
 
 ```
 $ npm run build && CDK_DEFAULT_ACCOUNT=your_account_number CDK_DEFAULT_REGION=your_region cdk deploy -c domain=mystaticsite.com -c subdomain=www
@@ -107,3 +107,7 @@ Do you wish to deploy these changes (y/N)?
 ```
 
 Enter `y` to continue the deployment.
+
+#### Be Patient
+
+Your first deployment requires quite a bit of infrastructure to be provisioned and configured. It may take more than a half hour in some cases.
