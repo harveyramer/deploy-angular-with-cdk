@@ -70,7 +70,7 @@ More details on this process are available in the article, [Making Route 53 the 
 
 ## Deploy
 
-What we have here is an empty Angular project, but it's an app, and it's deployable! In the root of your project, do the following, but substitute your own domain.
+What we have here is an empty Angular project, but it's an app, and it's deployable!
 
 ### First Run
 
