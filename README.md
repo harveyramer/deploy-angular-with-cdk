@@ -58,6 +58,19 @@ Navigate to the [Route 53 dashboard](https://console.aws.amazon.com/route53/home
 
 ![alt text](/rm-img/create-hosted-zone.png "Adding a zone")
 
+### Configure CDK Context
+
+Copy your hosted zone ID and replace the zone information in `cdk.context.json`. Keep the period at the end of your hosted zone name.
+
+```
+{
+  "hosted-zone:account=<youraccountid>:domainName=<yourdomain>:region=us-east-1": {
+    "Id": "/hostedzone/<yourzoneid>",
+    "Name": "<yourzonedomainname>."
+  }
+}
+```
+
 ### DNS Migration
 
 In order for users to access this project, you will need your domain name hosted in Route 53. That will take some time to propogate, so I suggest completing the steps below immediately before continuing.
